@@ -115,8 +115,8 @@ session controller would expect.
 // POST ted-sessions/current
 
 user: {
-  email: "email",
-  password: "password"
+  "email": "email",
+  "password": "password"
 }
 ```
 
