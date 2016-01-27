@@ -1,7 +1,7 @@
 {
   "name": "ember-ted-session",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Easy user session management for your TED application",
   "directories": {
     "doc": "doc",
     "test": "tests"
