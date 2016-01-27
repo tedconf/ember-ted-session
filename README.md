@@ -45,8 +45,8 @@ export default Ember.Component.exnted({
 
 ### Logging in
 
-If you want to build a login form to let users login you can use the
-`ted-session` model to authenticate with the backend.
+If you want to build a login form to let users login you can also use
+the `ted-session` service to authenticate with the backend.
 
 ```javascript
 // login/route.js
@@ -114,7 +114,7 @@ session controller would expect.
 ```json
 // POST ted-sessions/current
 
-user: {
+"user": {
   "email": "email",
   "password": "password"
 }
