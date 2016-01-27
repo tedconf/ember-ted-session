@@ -19,7 +19,7 @@ like current user, from your TED backend.
 As soon as your application boots up you'll probably want to fetch the
 current user. The `ted-session` service has a `#fetch` method for that.
 
-```
+```javascript
 // application/route.js
 
 export default Ember.Route.extend({
@@ -34,7 +34,7 @@ export default Ember.Route.extend({
 Now any component can access the current user by just injecting the
 service.
 
-```
+```javascript
 // my-widget/component.js
 
 export default Ember.Component.exnted({
@@ -48,7 +48,7 @@ export default Ember.Component.exnted({
 If you want to build a login form to let users login you can use the
 `ted-session` model to authenticate with the backend.
 
-```
+```javascript
 // login/route.js
 
 export default Ember.Route.extend({
@@ -82,7 +82,7 @@ API | Type | About | Returns | Example
 
 The get expects a JSON API document.
 
-```
+```json
 // GET ted-sessions/current
 
 {
@@ -111,7 +111,7 @@ The post however is formatted to match the JSON that a normal devise
 session controller would expect.
 
 
-```
+```json
 // POST ted-sessions/current
 
 user: {
