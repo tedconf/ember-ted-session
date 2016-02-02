@@ -21,12 +21,13 @@ export default Ember.Service.extend({
 
   fetch() {
     return this.get('store').findRecord('ted-session', 'current')
-      .then((model) => {
-        this.set('model', model);
-        return model;
-      }, () => {
-        // rejected
-        this.set('model', null);
+      .then(model => {
+        if (model.get('user')) {
+          this.set('model', model);
+        } else {
+          this.set('model', null);
+        }
+        return model;  
       });
   },
 
