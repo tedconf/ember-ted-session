@@ -23,8 +23,8 @@ export default Ember.Service.extend({
     return this.get('store').findRecord('ted-session', 'current')
       .then((model) => {
         this.set('model', model);
-      })
-      .catch(() => {
+      }, () => {
+        // rejected
         this.set('model', null);
       });
   },
