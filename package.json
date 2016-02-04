@@ -1,6 +1,6 @@
 {
   "name": "ember-ted-session",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Easy user session management for your TED application",
   "directories": {
     "doc": "doc",
