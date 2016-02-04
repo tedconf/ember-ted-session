@@ -6,7 +6,7 @@ export default Ember.Service.extend({
   store: Ember.inject.service(),
 
   currentUser: Ember.computed.readOnly('model.user'),
-  isLoggedIn: Ember.computed.bool('currentUser'),
+  isLoggedIn: Ember.computed.bool('model.user.id'),
   isNotLoggedIn: Ember.computed.not('isLoggedIn'),
 
   login(email, password) {
@@ -22,12 +22,7 @@ export default Ember.Service.extend({
   fetch() {
     return this.get('store').findRecord('ted-session', 'current')
       .then(model => {
-        if (model.get('user')) {
-          this.set('model', model);
-        } else {
-          this.set('model', null);
-        }
-        return model;  
+        this.set('model', model);
       });
   },
 
