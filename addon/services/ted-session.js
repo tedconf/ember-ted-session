@@ -8,6 +8,7 @@ export default Ember.Service.extend({
   currentUser: Ember.computed.readOnly('model.user'),
   isLoggedIn: Ember.computed.bool('model.user.id'),
   isNotLoggedIn: Ember.computed.not('isLoggedIn'),
+  isAuthorized: Ember.computed.bool('model.user.isAuthorized'),
 
   login(email, password) {
     return this.get('store')

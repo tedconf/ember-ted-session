@@ -7,6 +7,7 @@ like current user, from your TED backend.
 
 * JSONAPI
 * Your application must have a `User` model.
+* If using authorization, your `User` model must have an `isAuthorized` property
 
 ## Install
 
@@ -57,7 +58,8 @@ export default Ember.Route.extend({
   actions: {
     login(email, password) {
       this.get('tedSession')
-        .login(email, password)
+        .login(email
+          , password)
         .then(() => console.log('it worked'))
         .catch(() => console.loa('nope'));
     }
@@ -75,6 +77,7 @@ API | Type | About | Returns | Example
 `currentUser` | `property` | Returns the current user | `User DS.Model` | `tedSession.get('currentUser')`
 `isLoggedIn` | `property` | Is there a current user | `Boolean` | `tedSession.get('isLoggedIn')`
 `isNotLoggedIn` | `property` | Is there no current user | `Boolean` | `tedSession.get('isNotLoggedIn')`
+`isAuthorized` | `property` | Returns `isAuthorized` property of the current user model, `false` if unavailable. | `Boolean` | `tedSession.get('isAuthorized')`
 
 ## Details
 
@@ -97,6 +100,7 @@ The get expects a JSON API document.
     },
     "relationships": {
       "user": {
+        `isAuthorized`: true // optional 
         "links": {
           "self": "/ted-sessions/current/relationships/user",
           "related": "/ted-sessions/current/user"
