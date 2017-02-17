@@ -67,7 +67,21 @@ export default Ember.Route.extend({
 });
 ```
 
-#### Session service API
+### Generating an unauthorized route
+
+If your app distinguishes between authorized and un-authorized users (eg. not all authenticated users are authorized), you will probably want to redirect unauthorized users to a page explaining what happened. This addon contains a custom generator for creating this automagically.
+
+##### Requirements: 
+* a named `unauthorized` outlet in your application template: `{{outlet 'unauthorized'}}`
+
+##### Usage: 
+
+* `ember generate unauthorized-route` will create a route named `unauthorized` and add it to your app's router.
+* `ember generate unauthorized-route aw-hells-no` will create the same but with your custom name (`aw-hells-no` in this case).
+
+This generator will use your app's pod configuration and also accepts ember-cli's `--pod` flag.
+
+### Session service API
 
 API | Type | About | Returns | Example
 --- | --- | --- | --- | ---
