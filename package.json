@@ -41,7 +41,9 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.5"
+    "ember-cli-babel": "^5.1.5",
+    "ember-router-generator": "^1.2.3",
+    "fs-extra": "^2.0.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

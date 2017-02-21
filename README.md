@@ -7,6 +7,7 @@ like current user, from your TED backend.
 
 * JSONAPI
 * Your application must have a `User` model.
+* If using authorization, your `User` model must have an `isAuthorized` property
 
 ## Install
 
@@ -57,7 +58,8 @@ export default Ember.Route.extend({
   actions: {
     login(email, password) {
       this.get('tedSession')
-        .login(email, password)
+        .login(email
+          , password)
         .then(() => console.log('it worked'))
         .catch(() => console.loa('nope'));
     }
@@ -65,7 +67,21 @@ export default Ember.Route.extend({
 });
 ```
 
-#### Session service API
+### Generating an unauthorized route
+
+If your app distinguishes between authorized and un-authorized users (eg. not all authenticated users are authorized), you will probably want to redirect unauthorized users to a page explaining what happened. This addon contains a custom generator for creating this automagically.
+
+##### Requirements: 
+* a named `unauthorized` outlet in your application template: `{{outlet 'unauthorized'}}`
+
+##### Usage: 
+
+* `ember generate unauthorized-route` will create a route named `unauthorized` and add it to your app's router.
+* `ember generate unauthorized-route aw-hells-no` will create the same but with your custom name (`aw-hells-no` in this case).
+
+This generator will use your app's pod configuration and also accepts ember-cli's `--pod` flag.
+
+### Session service API
 
 API | Type | About | Returns | Example
 --- | --- | --- | --- | ---
@@ -75,6 +91,7 @@ API | Type | About | Returns | Example
 `currentUser` | `property` | Returns the current user | `User DS.Model` | `tedSession.get('currentUser')`
 `isLoggedIn` | `property` | Is there a current user | `Boolean` | `tedSession.get('isLoggedIn')`
 `isNotLoggedIn` | `property` | Is there no current user | `Boolean` | `tedSession.get('isNotLoggedIn')`
+`isAuthorized` | `property` | Returns `isAuthorized` property of the current user model, `false` if unavailable. | `Boolean` | `tedSession.get('isAuthorized')`
 
 ## Details
 
@@ -97,6 +114,7 @@ The get expects a JSON API document.
     },
     "relationships": {
       "user": {
+        `isAuthorized`: true // optional 
         "links": {
           "self": "/ted-sessions/current/relationships/user",
           "related": "/ted-sessions/current/user"
